@@ -11,6 +11,12 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
+from wagtail.fields import StreamField
+from wagtail import blocks
+from wagtail.admin.panels import FieldPanel
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.embeds.blocks import EmbedBlock
+
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
 
@@ -48,7 +54,18 @@ class BlogTagIndexPage(Page):
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
-    body = RichTextField(blank=True)
+    body = StreamField([
+    ('carousel', blocks.StreamBlock(
+        [
+            ('heading', blocks.CharBlock(form_classname="title")),
+            ('image', ImageChooserBlock()),
+            ('html', blocks.RawHTMLBlock()),
+            ('paragraph', blocks.RichTextBlock()),
+            ('video', EmbedBlock()),
+        ],
+        icon='cogs'
+    )),
+], use_json_field=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 

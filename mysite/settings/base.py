@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "home",
     "search",
     "blog",
+    "contact",
 
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -145,7 +146,7 @@ MEDIA_URL = "/media/"
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "mysite"
+WAGTAIL_SITE_NAME = "Arcade Site ltd"
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
