@@ -14,13 +14,13 @@
             <div class="flex-fill mx-xl-5 mb-2">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
                     {% for item in menu_items %}
-                        <li class="nav-item">
+                        <li class="nav-item dropdown">
                             <a href="{{ item.href }}" class="nav-link btn-outline-primary rounded-pill px-3" >
                               {{ item.text }}
                             </a>
                         </li>
                     {% endfor %}
-                    </ul>
+                </ul>
             </div>
         </div>
     </div>
